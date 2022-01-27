@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: 'Open-Sans', sans-serif;
+    color: rgb(61, 51, 45);
+    background-color: rgb(247, 232, 234);
+}
+
+#main-header {
+    background-color: rgb(199, 96, 107);
+    background-image: linear-gradient(to right, #b85e67, #e2b9bd,#E7717D);
+    color: rgb(248, 238, 238);
+    padding: 2rem 5%;
+    text-align: center;
+}
+
+.btn {
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    background-color: rgb(231, 113, 125);
+    border: 1px solid rgb(231, 113, 125);
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: rgb(231, 113, 125);
+}
+
+.btn-alt {
+    background-color: transparent;
+    border-color: rgb(45, 179, 105);
+    color: rgb(45, 179, 105);
+}
+
+.btn-start-game {
+    background-color: rgb(118, 172, 154);
+    border-color: rgb(118, 172, 154);
+    font-size: 1.2rem;
+}
+
+.btn:hover {
+    background-color: rgb(156, 78, 86);
+    border-color: rgb(156, 78, 86);
+}
+
+.btn-cancel:hover {
+    background-color: rgb(219, 205, 207);
+}
+
+.btn-alt:hover {
+    background-color: rgb(240, 241, 235);
+    border-color: rgb(45, 179, 105);
+}
+
+.btn-start-game:hover {
+    background-color: rgb(88, 128, 114);
+    border-color: rgb(88, 128, 114);
+}
+
