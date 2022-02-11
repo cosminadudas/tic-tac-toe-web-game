@@ -1,8 +1,30 @@
+function resetGameStatus() {
+    gameIsOver = false;
+    activePlayer = 0;
+    currentRound = 1;
+    gameOverElement.firstElementChild.innerHTML = 'You won, <span id="winner-player-name">PLAYER NAME</span>!';
+    gameOverElement.style.display = 'none';
+
+    let gameBoardIndex = 0;
+    for (let i = 0; i < gameData.length; i++) {
+        for (let j = 0; j < gameData.length; j++) {
+            gameData[i][j] = 0;
+            const gameBoardElement = document.getElementById('game-board').children[gameBoardIndex];
+            gameBoardElement.textContent = '';
+            gameBoardElement.classList.remove('disabled');
+            gameBoardIndex++;
+        }
+    }
+}
+
 function startNewGame() {
     if (players[0].name === '' || players[1].name === '') {
         alert('Please set custom player names for both players!');
         return;
     }
+
+    resetGameStatus();
+
     activePlayerNameElement.textContent = players[activePlayer].name
     gameAreaElement.style.display = 'block';
 }
@@ -21,6 +43,10 @@ function selectGameField(event) {
     const selectedColumn = selectedField.dataset.col -1;
     const selectedRow = selectedField.dataset.row -1;
 
+    if (gameIsOver) {
+        return;
+    }
+
     if (gameData[selectedRow][selectedColumn] > 0) {
         alert('Please select an empty field!');
         return;
@@ -37,6 +63,9 @@ function selectGameField(event) {
 
     // check for game over
     const winnerId = checkForGameOver();
+    if (winnerId !== 0) {
+        endGame(winnerId);
+    }
 
     // switch to the other symbol
     switchPlayer();
@@ -91,4 +120,17 @@ function checkForGameOver() {
 
     return 0;
 
+}
+
+function endGame(winnerId) {
+    gameIsOver = true;
+    if (winnerId > 0) {
+        gameOverElement.style.display = 'block';
+        gameOverElement.firstElementChild.firstElementChild.textContent = players[winnerId - 1].name;
+    }
+    else {
+        gameOverElement.style.display = 'block';
+        gameOverElement.firstElementChild.textContent = 'It\'s a draw!';
+        gameOverElement.getElementsByTagName('img')[0].remove();
+    }
 }
