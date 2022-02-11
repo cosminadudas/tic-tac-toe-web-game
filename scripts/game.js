@@ -17,11 +17,25 @@ function switchPlayer() {
 }
 
 function selectGameField(event) {
+    const selectedField = event.target;
+    const selectedColumn = selectedField.dataset.col -1;
+    const selectedRow = selectedField.dataset.row -1;
+
+    if (gameData[selectedRow][selectedColumn] > 0) {
+        alert('Please select an empty field!');
+        return;
+    } 
+
     // which field was clicked + add the symbol in that field area
-    event.target.textContent = players[activePlayer].symbol;
+    selectedField.textContent = players[activePlayer].symbol;
 
     // add disabled class the selected field area
-    event.target.classList.add('disabled');    
+    selectedField.classList.add('disabled');
+    
+    // update field that was selected
+    
+    gameData[selectedRow][selectedColumn] = activePlayer + 1;
+    console.log(gameData);
 
     // switch to the other symbol
     switchPlayer();
